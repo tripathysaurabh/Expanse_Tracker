@@ -1,0 +1,69 @@
+﻿@model IEnumerable<expanseApigateway.Models.expanse_table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p style="text-align:right">
+    @Html.ActionLink("Add Expanse", "Create")
+</p>
+
+<p>
+    @using (Html.BeginForm("Index","expansemvc",FormMethod.Get))
+            {
+              <b>Filter By: </b> @Html.RadioButton("searchBy", "category",true) <text>Category</text>
+               @Html.TextBox("Search") <input type="submit" value="filter" />
+            }
+</p>
+
+<h2> Expanse List</h2>
+
+<table class="table" style="background-color:aquamarine">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
